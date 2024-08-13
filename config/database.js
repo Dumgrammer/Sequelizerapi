@@ -13,5 +13,6 @@ try {
 } catch (error) {
     console.error(error);
 }
+//this is an ORM approach so pag hindi pa naka sync yung tables mag o aut create siya by the models
 
 module.exports = sequelize;

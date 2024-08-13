@@ -4,6 +4,7 @@ const User = require('../models/User');
 exports.getUser = async (req, res, next) => {
     try {
         const user = await User.findAll();
+        //very useful js appraoch for get as long as you have data models
         if (user) {
             res.status(200).json({
                 users: user
@@ -26,6 +27,7 @@ exports.createUser = async (req, res, next) => {
         const { first_name, last_name, email, password } = req.body;
          
         const newUser = await User.create({first_name, last_name, email, password});
+        //I store the saving so if you want to check or console it you can
         res.status(201).json({
             message: "User added successfully!"
         });
