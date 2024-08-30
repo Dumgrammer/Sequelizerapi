@@ -10,7 +10,7 @@ exports.getUser = async (req, res, next) => {
                 users: user
             }); 
         } else {
-            res.status(404).json*({
+            res.status(404).json({
                 message: "No users found"
             });
         }
