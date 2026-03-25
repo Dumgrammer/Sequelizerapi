@@ -19,5 +19,6 @@ const User = sequelize.define('User', {
         allowNull: false
     },
 });
+//this is the Data models you can also add validations here
 
 module.exports = User;

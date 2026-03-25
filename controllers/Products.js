@@ -1,6 +1,6 @@
 const Products = require('../models/Products')
 
-exports.getProducts = async(req, res, nesssssssxt) => {
+exports.getProducts = async(req, res, next) => {
 
     try {
 
@@ -13,7 +13,7 @@ exports.getProducts = async(req, res, nesssssssxt) => {
         } else {
             res.status(404).json({
                 message: 'Product not found'
-            })
+            });
         }
     } catch (error) {
         res.status(500).json({

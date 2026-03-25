@@ -4,6 +4,7 @@ const parser = require('body-parser');
 const morgan = require('morgan');
 
 const userRoutes = require('./routes/User');
+const productRoutes = require('./routes/Products');
 
 app.use(morgan('dev'));
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/users', userRoutes);
+app.use('/products', productRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not Found');

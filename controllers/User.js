@@ -1,3 +1,7 @@
+const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
+
+
 const User = require('../models/User');
 
 
@@ -24,9 +28,21 @@ exports.getUser = async (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
     try {
-        const { first_name, last_name, email, password } = req.body;
+
+        const existingUser = await User.findOne({where: { email: req.body.email }});
+
+        if (existingUser) {
+            res.status(404).json({
+                message: 'Credentials already in use!'
+            })
+        }
+
+        const hash = await argon2.hash(req.body.password, 10);
+
+        const { first_name, last_name, email} = req.body;
          
-        const newUser = await User.create({first_name, last_name, email, password});
+        const newUser = await User.create({first_name, last_name, email, password: hash});
+        console.log(newUser);
         //I store the saving so if you want to check or console it you can
         res.status(201).json({
             message: "User added successfully!"
